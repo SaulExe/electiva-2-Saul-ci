@@ -1,0 +1,22 @@
+name: Alerta CI - Hola Mundo
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  enviar-alerta:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout del repositorio
+      uses: actions/checkout@v3
+
+    - name: Ejecutar el programa Hola Mundo
+      run: node hola.js
+
+    - name: Enviar notificación a ntfy.sh
+      run: |
+        curl -d "✅ Push recibido en main. CI ejecutado correctamente." ntfy.sh/devops-itla
+
